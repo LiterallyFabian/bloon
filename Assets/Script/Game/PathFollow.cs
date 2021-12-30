@@ -2,7 +2,7 @@
 using System.ComponentModel.Design;
 using UnityEngine;
 
-namespace Bloon.Game
+namespace Bloonz.Game
 {
     public class PathFollow : MonoBehaviour
     {
@@ -12,6 +12,9 @@ namespace Bloon.Game
         private void Start()
         {
             transform.position = Path.Points[_currentPoint];
+            
+            PhysicalBloon bloon = GetComponent<PhysicalBloon>();
+            if(bloon) _speed = bloon.BloonData.Speed;
         }
 
         private void Update()

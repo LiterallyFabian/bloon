@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bloon.Bloons
+namespace Bloonz.Bloons
 {
     public class BloonBlue : Bloon
     {

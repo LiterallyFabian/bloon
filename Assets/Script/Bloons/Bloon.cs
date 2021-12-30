@@ -1,4 +1,4 @@
-﻿namespace Bloon.Bloons
+﻿namespace Bloonz.Bloons
 {
     /// <summary>
     /// A container for a Bloon's stats.

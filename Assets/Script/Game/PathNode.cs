@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bloon.Game
+namespace Bloonz.Game
 {
     /// <summary>
     /// Represents a position the bloons will pass.

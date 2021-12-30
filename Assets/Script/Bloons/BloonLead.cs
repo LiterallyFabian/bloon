@@ -1,4 +1,4 @@
-﻿namespace Bloon.Bloons
+﻿namespace Bloonz.Bloons
 {
     public class BloonLead : Bloon
     {

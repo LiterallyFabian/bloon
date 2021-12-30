@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Bloon.Game
+namespace Bloonz.Game
 {
     /// <summary>
     /// Saves the bloon path for the current level.

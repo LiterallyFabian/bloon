@@ -1,4 +1,4 @@
-﻿namespace Bloon
+﻿namespace Bloonz
 {
     public enum DamageType
     {
