@@ -9,7 +9,7 @@ namespace Bloon.Game
     {
         public static Vector3[] Points { get; private set; }
     
-        private void Start()
+        private void Awake()
         {
             PathNode[] nodes = GetComponentsInChildren<PathNode>();
             
