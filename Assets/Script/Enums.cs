@@ -24,4 +24,14 @@
         Zebra,
         Rainbow
     }
+
+    public enum UpgradePath
+    {
+        TopOne,
+        TopTwo,
+        TopThree,
+        BottomOne,
+        BottomTwo,
+        BottomThree
+    }
 }
