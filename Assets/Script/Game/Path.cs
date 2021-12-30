@@ -17,19 +17,15 @@ namespace Bloonz.Game
             Points[0] = GameObject.FindWithTag("Start").transform.position;
             Points[Points.Length-1] = GameObject.FindWithTag("Exit").transform.position;
             
-            float length = 0;
-            
-            for (int i = 1; i < nodes.Length; i++)
+            for (int i = 0; i < nodes.Length; i++)
             {
-                Points[i] = nodes[i].transform.position;
-                length += Vector3.Distance(nodes[i - 1].transform.position, nodes[i].transform.position);
+                Points[i+1] = nodes[i].transform.position;
             }
-            
+
             Debug.Log($"" +
                       $"Path: {Points.Length} points" +
                       $"\nStart: {Points[0]}" +
-                      $"\nExit: {Points[Points.Length-1]}" +
-                      $"Length: {length} units");        
+                      $"\nExit: {Points[Points.Length - 1]}"); 
             
             Destroy(gameObject);
         }

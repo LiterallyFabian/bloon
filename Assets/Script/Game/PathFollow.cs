@@ -34,7 +34,6 @@ namespace Bloonz.Game
             else
             {
                 CurrentPoint++;
-print(CurrentPoint);
                 if (CurrentPoint == Path.Points.Length)
                 {
                     // TODO: Drain lives
