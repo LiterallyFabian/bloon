@@ -12,11 +12,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _bloonPrefab;
     
     [Tooltip("The spawning area for the bloons")]
-    [SerializeField] private Vector3 _spawnPosition;
+    private Vector3 _spawnPosition;
 
     private void Start()
     {
         _spawnPosition = GameObject.FindWithTag("Start").transform.position;
+        SummonBloon(BloonType.Yellow);
     }
 
     /// <summary>
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         PhysicalBloon pb = go.GetComponent<PhysicalBloon>();
         
         pb.PathFollow.CurrentPoint = currentPoint;
+        pb.PathFollow.IsMoving = true;
         
         pb.SetBloon(b);
     }

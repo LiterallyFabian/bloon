@@ -10,6 +10,9 @@ namespace Bloonz.Game
         [SerializeField] private float _speed = 1.0f;
         public int CurrentPoint = 0;
         public PhysicalBloon PhysicalBloon;
+        
+        [Tooltip("Whether or not the bloon should move. If false, the bloon will not move.")]
+        public bool IsMoving = false;
 
         private void Start()
         {
@@ -21,6 +24,8 @@ namespace Bloonz.Game
 
         private void Update()
         {
+            if(!IsMoving) return;
+            
             if (transform.position != Path.Points[CurrentPoint])
             {
                 transform.position = Vector3.MoveTowards(transform.position, Path.Points[CurrentPoint],
@@ -29,9 +34,10 @@ namespace Bloonz.Game
             else
             {
                 CurrentPoint++;
-
+print(CurrentPoint);
                 if (CurrentPoint == Path.Points.Length)
                 {
+                    // TODO: Drain lives
                     Destroy(gameObject);
                 }
             }

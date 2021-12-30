@@ -22,6 +22,7 @@ namespace Bloonz.Game
         public void SetBloon(Bloon b)
         {
             Bloon = b;
+            print("uwu");
             GetComponent<SpriteRenderer>().sprite = Bloon.Sprite;
         }
     }
