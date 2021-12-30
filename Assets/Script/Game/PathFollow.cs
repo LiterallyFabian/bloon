@@ -1,38 +1,40 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Bloonz.Game
 {
     public class PathFollow : MonoBehaviour
     {
         [SerializeField] private float _speed = 1.0f;
-        private int _currentPoint = 0;
+        public int CurrentPoint = 0;
+        public PhysicalBloon PhysicalBloon;
 
         private void Start()
         {
-            transform.position = Path.Points[_currentPoint];
+            transform.position = Path.Points[CurrentPoint];
             
             PhysicalBloon bloon = GetComponent<PhysicalBloon>();
-            if(bloon) _speed = bloon.BloonData.Speed;
+            if(bloon) _speed = bloon.Bloon.Speed;
         }
 
         private void Update()
         {
-            if (transform.position != Path.Points[_currentPoint])
+            if (transform.position != Path.Points[CurrentPoint])
             {
-                transform.position = Vector3.MoveTowards(transform.position, Path.Points[_currentPoint], _speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, Path.Points[CurrentPoint],
+                    _speed * PhysicalBloon.Bloon.Speed * Time.deltaTime);
             }
             else
             {
-                _currentPoint++;
+                CurrentPoint++;
 
-                if (_currentPoint == Path.Points.Length)
+                if (CurrentPoint == Path.Points.Length)
                 {
                     Destroy(gameObject);
                 }
             }
-
         }
     }
 }

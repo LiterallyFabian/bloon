@@ -1808,8 +1808,9 @@ GameObject:
   - component: {fileID: 1310525001}
   - component: {fileID: 1310525000}
   - component: {fileID: 1310524999}
+  - component: {fileID: 1310525002}
   m_Layer: 0
-  m_Name: Blue
+  m_Name: Bloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1893,6 +1894,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1310525002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310524998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0fd661815c00842a14f566162c663f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1455952770
 PrefabInstance:
   m_ObjectHideFlags: 0

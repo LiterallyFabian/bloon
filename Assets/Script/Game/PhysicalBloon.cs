@@ -10,17 +10,19 @@ namespace Bloonz.Game
     /// </summary>
     public class PhysicalBloon : MonoBehaviour
     {
-        public Bloon BloonData;
-        // Start is called before the first frame update
-        void Start()
+        [Tooltip("The Bloon that this PhysicalBloon represents.")]
+        public Bloon Bloon;
+        
+        public PathFollow PathFollow;
+        
+        /// <summary>
+        /// Changes the Bloon type that this PhysicalBloon represents.
+        /// </summary>
+        /// <param name="b">The new bloon type to use.</param>
+        public void SetBloon(Bloon b)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Bloon = b;
+            GetComponent<SpriteRenderer>().sprite = Bloon.Sprite;
         }
     }
 }
