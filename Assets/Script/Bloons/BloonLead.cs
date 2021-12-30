@@ -2,7 +2,7 @@
 {
     public class BloonLead : Bloon
     {
-        public override string Name => "Lead";
+        public override BloonType Type => BloonType.Lead;
         public override int Health => 1;
         public override int Value => 23;
         public override float Speed => 1.0f;

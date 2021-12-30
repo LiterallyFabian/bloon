@@ -1,10 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Bloonz.Bloons
 {
     public class BloonBlue : Bloon
     {
-        public override string Name => "Blue";
+        public override BloonType Type => BloonType.Blue;
         public override int Health => 1;
         public override int Value => 1;
         public override float Speed => 1.4f;

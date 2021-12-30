@@ -1,4 +1,6 @@
-﻿namespace Bloonz.Bloons
+﻿using UnityEngine;
+
+namespace Bloonz.Bloons
 {
     /// <summary>
     /// A container for a Bloon's stats.
@@ -6,9 +8,9 @@
     public abstract class Bloon
     {
         /// <summary>
-        /// Name of this bloon's sprite.
+        /// The type of bloon.
         /// </summary>
-        public abstract string Name { get; }
+        public abstract BloonType Type { get; }
         
         /// <summary>
         /// The health of the Bloon.
@@ -39,5 +41,10 @@
         /// Whether or not this Bloon is camouflaged.
         /// </summary>
         public abstract bool Camo { get; }
+        
+        /// <summary>
+        /// The sprite of this Bloon.
+        /// </summary>
+        public Sprite Sprite { get; set; }
     }
 }

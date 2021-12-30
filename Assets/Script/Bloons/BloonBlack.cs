@@ -1,8 +1,10 @@
-﻿namespace Bloonz.Bloons
+﻿using UnityEngine;
+
+namespace Bloonz.Bloons
 {
     public class BloonBlack : Bloon
     {
-        public override string Name => "Black";
+        public override BloonType Type => BloonType.Black;
         public override int Health => 1;
         public override int Value => 11;
         public override float Speed => 1.8f;

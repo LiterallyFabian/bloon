@@ -4,7 +4,7 @@ namespace Bloonz.Bloons
 {
     public class BloonYellow : Bloon
     {
-        public override string Name => "Yellow";
+        public override BloonType Type => BloonType.Yellow;
         public override int Health => 1;
         public override int Value => 4;
         public override float Speed => 3.2f;
