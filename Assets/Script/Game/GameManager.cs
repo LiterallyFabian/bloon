@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Bloonz;
 using Bloonz.Bloons;
 using Bloonz.Game;
+using Bloonz.Round;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -17,7 +18,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _spawnPosition = GameObject.FindWithTag("Start").transform.position;
-        SummonBloon(BloonType.Yellow);
+        
+        
+        StartCoroutine(SummonRound(3));
     }
 
     /// <summary>
@@ -46,5 +49,33 @@ public class GameManager : MonoBehaviour
         pb.PathFollow.IsMoving = true;
         
         pb.SetBloon(b);
+    }
+
+    private IEnumerator SummonRound(int round)
+    {
+        Round r = RoundManager.Rounds[round - 1];
+        
+        Debug.Log($"Summoning round {round} with {r.TotalBloons} bloons.");
+        
+        
+        float delayDelta = 0;
+        // summon each group of bloons in the round
+        foreach (BloonGroup group in r.BloonGroups)
+        {
+            // wait for the group to be ready
+            yield return new WaitForSeconds(group.Delay - delayDelta);
+            delayDelta += group.Delay;
+            StartCoroutine(SummonGroup(group));
+        }
+    }
+
+    private IEnumerator SummonGroup(BloonGroup group)
+    {
+        Debug.Log($"Summoning group {group.BloonType} with {group.Count} bloons.");
+        for(int i = 0; i < group.Count; i++)
+        {
+            yield return new WaitForSeconds(group.DelayBetweenBloons);
+            SummonBloon(group.BloonType);
+        }
     }
 }

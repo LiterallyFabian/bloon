@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddefcd21ca9547f3bc9c4eb8f8028581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: 1.5
   CurrentPoint: 0
   PhysicalBloon: {fileID: 8422429180064065097}
   IsMoving: 0

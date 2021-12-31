@@ -19,7 +19,6 @@ namespace Bloonz.Game
             transform.position = Path.Points[CurrentPoint];
             
             PhysicalBloon bloon = GetComponent<PhysicalBloon>();
-            if(bloon) _speed = bloon.Bloon.Speed;
         }
 
         private void Update()
