@@ -1,5 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using Random = System.Random;
 
 public class MusicManager : MonoBehaviour
@@ -7,9 +11,14 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private  List<AudioClip> musicClips;
     private AudioSource _audioSource;
     private int _currentClipIndex;
+    
+    private static bool _playedSplash = false;
 
     private void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Main")
+            StartCoroutine(Splash());
+        
         Shuffle(musicClips);
         _audioSource = GetComponent<AudioSource>();
         NextSong();
@@ -48,5 +57,21 @@ public class MusicManager : MonoBehaviour
             int k = rng.Next(n + 1);
             (list[k], list[n]) = (list[n], list[k]);
         }
+    }
+
+    private static IEnumerator Splash()
+    {
+        if (Application.isEditor || _playedSplash) yield break;
+        
+        _playedSplash = true;
+        Time.timeScale = 0.02f;
+        SplashScreen.Begin();
+        while (!SplashScreen.isFinished)
+        {
+            SplashScreen.Draw();
+            yield return null;
+        }
+
+        Time.timeScale = 1;
     }
 }
