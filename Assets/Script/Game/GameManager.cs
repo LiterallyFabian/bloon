@@ -29,11 +29,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SummonRound(4));
     }
 
-    private void Update()
-    {
-        print(FindFirst().Bloon.Type);
-    }
-
     #region Summoning
     /// <summary>
     /// Spawns a bloon of the specified type at spawn
