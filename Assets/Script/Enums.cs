@@ -32,11 +32,11 @@
 
     public enum UpgradePath
     {
-        TopOne,
-        TopTwo,
-        TopThree,
-        BottomOne,
-        BottomTwo,
-        BottomThree
+        Top1,
+        Top2,
+        Top3,
+        Bottom1,
+        Bottom2,
+        Bottom3
     }
 }

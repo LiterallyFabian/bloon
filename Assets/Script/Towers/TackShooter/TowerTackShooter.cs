@@ -9,6 +9,7 @@ namespace Bloonz.Towers
         public override float Range { get; set; } = 3.5f;
         public override float FireRate { get; set; } = 0.5f;
         public override Upgrade[] Upgrades { get; set; }
+        public override bool CanSeeCamo { get; set; } = false;
 
         protected override void Attack(PhysicalBloon bloon)
         {
