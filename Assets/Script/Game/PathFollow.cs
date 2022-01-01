@@ -15,14 +15,8 @@ namespace Bloonz.Game
         
         [Tooltip("The bloon to move")]
         public PhysicalBloon PhysicalBloon;
-        
-        /// <summary>
-        /// The distance left to the next point
-        /// </summary>
         public float Progress { get; private set; }
-        
-        
-        
+
         [Tooltip("Whether or not the bloon should move. If false, the bloon will not move.")]
         public bool IsMoving = false;
 

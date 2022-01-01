@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     
     public List<PhysicalBloon> Bloons { get; } = new List<PhysicalBloon>();
+    
+    public PhysicalBloon[] SortedBloons { get; private set; }
 
     private void Start()
     {
@@ -27,6 +29,11 @@ public class GameManager : MonoBehaviour
 
 
         StartCoroutine(SummonRound(4));
+    }
+
+    private void Update()
+    {
+        SortedBloons = Bloons.OrderBy(b => b.PathFollow.Progress).Reverse().ToArray();
     }
 
     #region Summoning
@@ -111,23 +118,5 @@ public class GameManager : MonoBehaviour
         return closest;
     }
 
-    /// <summary>
-    /// Finds the first bloon on the path
-    /// </summary>
-    /// <returns>A bloon on the path, or null if none are spawned</returns>
-    public PhysicalBloon FindFirst()
-    {
-        // find highest progress
-        float highestProgress = 0;
-        PhysicalBloon highestBloon = null;
-        foreach (PhysicalBloon b in Bloons.Where(b => b.PathFollow.Progress > highestProgress))
-        {
-            highestProgress = b.PathFollow.Progress;
-            highestBloon = b;
-        }
-
-        return highestBloon;
-    }
-    
     #endregion
 }
