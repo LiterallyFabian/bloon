@@ -25,6 +25,11 @@
         Rainbow
     }
 
+    public enum TowerType
+    {
+        TackShooter
+    }
+
     public enum UpgradePath
     {
         TopOne,
