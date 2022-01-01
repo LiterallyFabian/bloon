@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Bloonz.Round
+﻿namespace Bloonz.Round
 {
     /// <summary>
     /// Represents a group of bloons spawning in a round.
