@@ -7,9 +7,21 @@ namespace Bloonz.Game
 {
     public class PathFollow : MonoBehaviour
     {
+        [Tooltip("The base speed modifier to move this bloon at")]
         [SerializeField] private float _speed = 1.0f;
+        
+        [Tooltip("The current point to move to")]
         public int CurrentPoint = 0;
+        
+        [Tooltip("The bloon to move")]
         public PhysicalBloon PhysicalBloon;
+        
+        /// <summary>
+        /// The distance left to the next point
+        /// </summary>
+        public float Progress { get; private set; }
+        
+        
         
         [Tooltip("Whether or not the bloon should move. If false, the bloon will not move.")]
         public bool IsMoving = false;
@@ -17,18 +29,21 @@ namespace Bloonz.Game
         private void Start()
         {
             transform.position = Path.Points[CurrentPoint];
-            
-            PhysicalBloon bloon = GetComponent<PhysicalBloon>();
         }
 
         private void Update()
         {
             if(!IsMoving) return;
             
-            if (transform.position != Path.Points[CurrentPoint])
+            Vector3 position = transform.position;
+            
+            if (position != Path.Points[CurrentPoint])
             {
-                transform.position = Vector3.MoveTowards(transform.position, Path.Points[CurrentPoint],
+                position = Vector3.MoveTowards(position, Path.Points[CurrentPoint],
                     _speed * PhysicalBloon.Bloon.Speed * Time.deltaTime);
+                transform.position = position;
+                
+                Progress = 1 - Vector3.Distance(position, Path.Points[CurrentPoint]) / Vector3.Distance(Path.Points[CurrentPoint- 1], Path.Points[CurrentPoint]) + CurrentPoint;
             }
             else
             {

@@ -99,6 +99,7 @@ MonoBehaviour:
   _speed: 1.5
   CurrentPoint: 0
   PhysicalBloon: {fileID: 8422429180064065097}
+  Progress: 0
   IsMoving: 0
 --- !u!114 &8422429180064065097
 MonoBehaviour:

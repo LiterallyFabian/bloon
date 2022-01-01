@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Bloonz;
 using Bloonz.Bloons;
 using Bloonz.Game;
@@ -14,15 +15,26 @@ public class GameManager : MonoBehaviour
     
     [Tooltip("The spawning area for the bloons")]
     private Vector3 _spawnPosition;
+    
+    public static GameManager Instance { get; private set; }
+    
+    public List<PhysicalBloon> Bloons { get; } = new List<PhysicalBloon>();
 
     private void Start()
     {
         _spawnPosition = GameObject.FindWithTag("Start").transform.position;
-        
-        
-        StartCoroutine(SummonRound(3));
+        Instance = this;
+
+
+        StartCoroutine(SummonRound(4));
     }
 
+    private void Update()
+    {
+        print(FindFirst().Bloon.Type);
+    }
+
+    #region Summoning
     /// <summary>
     /// Spawns a bloon of the specified type at spawn
     /// </summary>
@@ -34,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     /// <summary>
     /// Summons a bloon of the specified type at the specified position.
-    /// Mainly used when a popped bloon spawns 2..* bloons.
+    /// Only called directly when a popped bloon shall spawn 2..* bloons.
     /// </summary>
     /// <param name="type">The bloon type to spawn</param>
     /// <param name="position">The position to spawn the bloon at</param>
@@ -49,6 +61,8 @@ public class GameManager : MonoBehaviour
         pb.PathFollow.IsMoving = true;
         
         pb.SetBloon(b);
+        
+        Bloons.Add(pb);
     }
 
     private IEnumerator SummonRound(int round)
@@ -78,4 +92,47 @@ public class GameManager : MonoBehaviour
             SummonBloon(group.BloonType);
         }
     }
+    #endregion
+    
+    #region Getting Bloons
+
+    /// <summary>
+    /// Finds a bloon closest to a position
+    /// </summary>
+    /// <returns>The closest bloon, or null if none are spawned</returns>
+    public PhysicalBloon FindClosest(Vector3 pos)
+    {
+        PhysicalBloon closest = null;
+        float minDist = float.MaxValue;
+        foreach(PhysicalBloon b in Bloons)
+        {
+            float dist = Vector3.Distance(pos, b.transform.position);
+            if (dist < minDist)
+            {
+                closest = b;
+                minDist = dist;
+            }
+        }
+        return closest;
+    }
+
+    /// <summary>
+    /// Finds the first bloon on the path
+    /// </summary>
+    /// <returns>A bloon on the path, or null if none are spawned</returns>
+    public PhysicalBloon FindFirst()
+    {
+        // find highest progress
+        float highestProgress = 0;
+        PhysicalBloon highestBloon = null;
+        foreach (PhysicalBloon b in Bloons.Where(b => b.PathFollow.Progress > highestProgress))
+        {
+            highestProgress = b.PathFollow.Progress;
+            highestBloon = b;
+        }
+
+        return highestBloon;
+    }
+    
+    #endregion
 }

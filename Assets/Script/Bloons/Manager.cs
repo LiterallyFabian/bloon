@@ -12,7 +12,7 @@ namespace Bloonz.Bloons
         public static Manager Instance;
         private Bloon[] _bloons;
         
-        private void Start()
+        private void Awake()
         {
             Instance = this;
             InitializeBloons();
@@ -29,6 +29,8 @@ namespace Bloonz.Bloons
                 bloons.Add(bloon);
             }
             _bloons = bloons.ToArray();
+            
+            Debug.Log("Bloons initialized");
         }
         
         public static Bloon GetBloon(BloonType type)
