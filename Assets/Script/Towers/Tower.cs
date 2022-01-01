@@ -34,6 +34,12 @@ namespace Bloonz.Towers
         public abstract Upgrade[] Upgrades { get; set; }
 
         /// <summary>
+        /// Whether or not this tower can see and pop camo
+        /// </summary>
+        public abstract bool CanSeeCamo { get; set; }
+        
+
+        /// <summary>
         /// Tries to perform an attack on a target. Called from base.Update() if the tower is ready to attack.
         /// </summary>
         protected abstract void Attack(PhysicalBloon bloon);
