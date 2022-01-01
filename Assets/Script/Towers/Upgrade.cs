@@ -27,6 +27,6 @@ namespace Bloonz.Towers
         /// <summary>
         /// Applies this upgrade on its tower
         /// </summary>
-        public abstract void ApplyUpgrade();
+        public abstract void ApplyUpgrade(Tower t);
     }
 }
